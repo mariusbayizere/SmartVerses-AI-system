@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SmartVerses AI</title>
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <i class="ti ti-ear"></i>
+    <span>SmartVerses AI</span>
+    <span class="badge live">● LIVE</span>
+  </div>
+  <div class="ver-pills" id="ver-pills"></div>
+  <div class="session-stats">
+    <span class="stat"><i class="ti ti-clock"></i><span id="s-time">00:00</span></span>
+    <span class="stat"><i class="ti ti-bible"></i><span id="s-detected">0</span> detected</span>
+    <span class="stat"><i class="ti ti-device-tv"></i><span id="s-projected">0</span> projected</span>
+  </div>
+</header>
+
+<div class="workspace">
+
+  <!-- LEFT: Listener -->
+  <div class="panel panel-left">
+    <div class="section-label"><i class="ti ti-microphone"></i> Live Listener</div>
+
+    <button id="listen-btn" class="btn-listen" onclick="toggleListen()">
+      <i class="ti ti-microphone" id="listen-icon"></i>
+      <span id="listen-text">Start Listening</span>
+    </button>
+
+    <div class="transcript" id="transcript">
+      <span class="muted">Transcript will appear here as you speak during the service...</span>
+    </div>
+
+    <div class="status-bar" id="status-bar">
+      <span class="dot" id="dot"></span>
+      <span id="status-msg">Not active — press Start to begin</span>
+    </div>
+
+    <div class="divider-label">OR add manually</div>
+    <div class="manual-row">
+      <input id="manual-in" class="manual-input" placeholder="Type a verse: John 3:16" />
+      <button class="btn-add" onclick="manualAdd()"><i class="ti ti-plus"></i> Add</button>
+    </div>
+  </div>
+
+  <!-- RIGHT: Operator Queue -->
+  <div class="panel panel-right">
+    <div class="section-label">
+      <i class="ti ti-list-check"></i> Operator Queue
+      <span class="count-badge" id="q-count">0</span>
+    </div>
+    <div id="queue" class="queue-area">
+      <div class="empty-state">
+        <i class="ti ti-microphone-off"></i>
+        <p>No verses detected yet.<br/>Start the listener and speak naturally.</p>
+        <small>Example: "Let us read from John chapter 3 verse 16"</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM: Projection Screen -->
+<div class="projection-screen">
+  <div class="proj-bar">
+    <div class="proj-bar-left">
+      <i class="ti ti-device-tv"></i>
+      <span>Projection Screen</span>
+      <span class="proj-hint" id="proj-hint">No verse projected yet</span>
+    </div>
+    <div class="proj-bar-right">
+      <button class="btn-proj-action speak" id="speak-btn" onclick="toggleSpeak()">
+        <i class="ti ti-volume" id="speak-icon"></i>
+        <span id="speak-text">Read Aloud</span>
+      </button>
+      <button class="btn-proj-action" onclick="clearProj()">
+        <i class="ti ti-x"></i> Clear
+      </button>
+    </div>
+  </div>
+  <div id="proj-content" class="proj-content">
+    <div class="proj-placeholder">
+      <i class="ti ti-layout-columns"></i>
+      <p>Verse will appear here in <strong>English</strong> and <strong>Kinyarwanda</strong><br/>when operator presses Project</p>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
